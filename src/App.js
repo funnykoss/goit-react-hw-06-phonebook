@@ -3,7 +3,7 @@
 // import React, { useState, useEffect } from 'react';
 import ContactForm from './components/ContactForm/ContactForm.jsx';
 import ContactList from './components/ContactList/ContactList.jsx';
-// import Filter from './components/Filter/Filter.jsx';
+import Filter from './components/Filter/Filter.jsx';
 import Contact from './components/ContactList/Contact.jsx';
 import s from './App.module.css';
 // const useLocalStorage = (key, defaultValue) => {
@@ -57,8 +57,8 @@ export default function App() {
       <section className={s.section}>
         <ContactForm />
         <Contact />
-        {/* <Filter value={filter} onChange={onChange} /> */}
-        {/* <ContactList /> */}
+        <Filter />
+        <ContactList />
       </section>
     </>
   );

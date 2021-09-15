@@ -4,6 +4,7 @@ import s from '../ContactForm/ContactForm.module.css'
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import contactsActions from '../../redux/contacts/contacts-actions'
+
  const  ContactForm = ({ addContact })=>{
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
