@@ -1,15 +1,11 @@
 //  eslint-disable react/jsx-no-duplicate-props
-
-import React, { useState } from 'react';
-
+// import shortid from 'shortid';
+// import React, { useState, useEffect } from 'react';
 import ContactForm from './components/ContactForm/ContactForm.jsx';
 import ContactList from './components/ContactList/ContactList.jsx';
 // import Filter from './components/Filter/Filter.jsx';
 import Contact from './components/ContactList/Contact.jsx';
 import s from './App.module.css';
-// import { connect } from 'react-redux';
-// import contactsActions from './redux/contacts/contacts-actions.js';
-
 // const useLocalStorage = (key, defaultValue) => {
 //   const [state, setState] = useState(() => {
 //     return JSON.parse(window.localStorage.getItem(key)) ?? defaultValue;
@@ -21,6 +17,12 @@ import s from './App.module.css';
 // };
 export default function App() {
   // const [filter, setFilter] = useState('');
+  // const [contacts, setContacts] = useLocalStorage('contacts', [
+  //   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+  //   { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+  //   { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+  //   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+  // ]);
 
   // const addContact = (name, number) => {
   //   const newContact = {
@@ -56,7 +58,7 @@ export default function App() {
         <ContactForm />
         <Contact />
         {/* <Filter value={filter} onChange={onChange} /> */}
-        <ContactList />
+        {/* <ContactList /> */}
       </section>
     </>
   );

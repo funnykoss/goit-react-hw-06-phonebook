@@ -1,11 +1,10 @@
+import { useState } from "react";
 
-import { useState } from 'react';
 import s from '../ContactForm/ContactForm.module.css'
 import PropTypes from 'prop-types';
-import contactsActions from '../../redux/contacts/contacts-actions';
-import { connect } from 'react-redux';
-
- function ContactForm({addContact}) {
+import { connect } from "react-redux";
+import contactsActions from '../../redux/contacts/contacts-actions'
+ const  ContactForm = ({ addContact })=>{
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -29,6 +28,7 @@ import { connect } from 'react-redux';
     };
 
   const submitForm = event => {
+ console.log(event)
     event.preventDefault();
      
     addContact(name,number);
@@ -37,7 +37,7 @@ import { connect } from 'react-redux';
    function reset() {
       setName('');
       setNumber('');
- }
+     }
   
   return (
        <>
@@ -73,15 +73,12 @@ import { connect } from 'react-redux';
       </>)
  
  }
-
-const mapDispatchToProps=dispatch=>  ({
-  addContact: (name, number) =>
-    dispatch(contactsActions.addContact(name, number)),
+const mapDispatchToProps = dispatch => ({
+  addContact: (name,number) => dispatch(contactsActions.addContact(name,number)),
 });
 
-export default connect(null, mapDispatchToProps)(ContactForm);
+export default connect(null,mapDispatchToProps)(ContactForm)
 
 ContactForm.propTypes = {
   addContact: PropTypes.func.isRequired
 }
-
