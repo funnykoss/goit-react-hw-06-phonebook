@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import contactsActions from '../../redux/contacts/contacts-actions'
 
-const ContactList = ({ contacts, onDeleteContact  }) => {
+const ContactList = ({ contacts, onDeleteContact }) => {
   return (
     <ul>
       {
@@ -23,12 +23,7 @@ const ContactList = ({ contacts, onDeleteContact  }) => {
    </ul>
   )
 }
-// const getVisibleContacts = (contacts, filter) => {
-//     const normalizeContacts = filter.toLowerCase();
-//     return contacts.filter(({ name }) =>
-//         name.toLowerCase().includes(normalizeContacts)
-//     );
-// };
+
 
 const mapStateToProps = (state) => {
     const { filter, items} = state.contacts;
@@ -38,8 +33,8 @@ const mapStateToProps = (state) => {
     );
 
     return {
-        contacts: visibleContacts
-    };
+      contacts: visibleContacts,
+     };
     
 };
 

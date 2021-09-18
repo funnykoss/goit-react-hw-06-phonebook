@@ -1,15 +1,24 @@
-import { useState } from "react";
+import { useState} from "react";
 
+
+import shortid from 'shortid';
 import s from '../ContactForm/ContactForm.module.css'
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import contactsActions from '../../redux/contacts/contacts-actions'
 
- const  ContactForm = ({ addContact })=>{
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
 
-  const handlerChange = event => {
+
+ const  ContactForm = ({ addContact})=>{
+  const [name, setName] = useState('');
+   const [number, setNumber] = useState('');
+   const [contacts, setContacts] = ([
+     { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+     { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+     { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+   ]);
+ const handlerChange = event => {
   
     const { name, value } = event.target;
      
@@ -28,11 +37,13 @@ import contactsActions from '../../redux/contacts/contacts-actions'
     
     };
 
-  const submitForm = event => {
- console.log(event)
-    event.preventDefault();
+   
+   const submitForm = event => {
+    
+     event.preventDefault();
+
+     addContact(name, number);
      
-    addContact(name,number);
     reset();
    }
    function reset() {
@@ -74,8 +85,25 @@ import contactsActions from '../../redux/contacts/contacts-actions'
       </>)
  
  }
+
+// const checkContactsName = (state) => {
+//   const { name, number, items } = state.contacts
+//   const newContact = {
+//     id: shortid.generate(),
+//     name,
+//     number,
+//   };
+//   const contactCheck = items.find(({ name }) => name === newContact.name);
+//   if (contactCheck !== undefined) {
+//     alert(`${newContact.name} is already in contact`);
+//     return
+//   }
+// }
+
+  
 const mapDispatchToProps = dispatch => ({
-  addContact: (name,number) => dispatch(contactsActions.addContact(name,number)),
+
+ addContact: (name,number) => dispatch(contactsActions.addContact(name,number)),
 });
 
 export default connect(null,mapDispatchToProps)(ContactForm)
