@@ -1,23 +1,23 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
-import types from './contacts-type';
-
+import actions from './contacts-actions';
+// import types from './contacts-type';
 const items = createReducer([], {
-  [types.ADD]: (state, { payload }) => {
-    const contactCheck = state.find(({ name }) => name === payload.name);
-    if (contactCheck !== undefined) {
+  [actions.addContact]: (state, { payload }) => {
+    const findContact = state.find(({ name }) => name === payload.name);
+    if (findContact !== undefined) {
       alert(`${payload.name} is already in contact`);
       return;
     }
 
     return [...state, payload];
   },
-  [types.DELETE]: (state, { payload }) =>
+  [actions.eleteContact]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
 });
 
 const filter = createReducer('', {
-  [types.FILTER]: (state, { payload }) => payload,
+  [actions.contactCheck]: (_, { payload }) => payload,
 });
 
 export default combineReducers({
