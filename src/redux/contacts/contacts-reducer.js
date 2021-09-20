@@ -4,15 +4,9 @@ import actions from './contacts-actions';
 // import types from './contacts-type';
 const items = createReducer([], {
   [actions.addContact]: (state, { payload }) => {
-    const findContact = state.find(({ name }) => name === payload.name);
-    if (findContact !== undefined) {
-      alert(`${payload.name} is already in contact`);
-      return;
-    }
-
     return [...state, payload];
   },
-  [actions.eleteContact]: (state, { payload }) =>
+  [actions.deleteContact]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
 });
 

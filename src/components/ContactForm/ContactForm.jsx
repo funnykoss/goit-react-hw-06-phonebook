@@ -1,7 +1,6 @@
 import { useState} from "react";
 
 
-import shortid from 'shortid';
 import s from '../ContactForm/ContactForm.module.css'
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
@@ -9,47 +8,42 @@ import contactsActions from '../../redux/contacts/contacts-actions'
 
 
 
- const  ContactForm = ({ addContact})=>{
+ const  ContactForm = ({ addContact, contacts})=>{
   const [name, setName] = useState('');
    const [number, setNumber] = useState('');
-   const [contacts, setContacts] = ([
-     { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-     { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-     { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-   ]);
  const handlerChange = event => {
   
     const { name, value } = event.target;
      
-    switch (name) {
-      case 'name':
-        setName(value)
-        break;
-      
-      case 'number':
-        setNumber(value)
-        break;
-      
-      default:
-        break;
-    }
-    
+      switch (name) {
+        case 'name':
+          setName(value)
+          break;
+        
+        case 'number':
+          setNumber(value)
+          break;
+        
+        default:
+          break;
+      }
     };
-
-   
-   const submitForm = event => {
-    
-     event.preventDefault();
-
-     addContact(name, number);
-     
-    reset();
-   }
-   function reset() {
-      setName('');
-      setNumber('');
-     }
+    const submitForm = event => {
+      event.preventDefault();
+      const isContactExist = 
+        contacts.find(contact=>contact.name===name)
+      if (isContactExist) {
+          alert(`${isContactExist.name} is already in contact`);
+          return;
+      }
+      addContact(name, number);
+      
+        reset();
+    }
+      function reset() {
+          setName('');
+          setNumber('');
+        }
   
   return (
        <>
@@ -99,15 +93,19 @@ import contactsActions from '../../redux/contacts/contacts-actions'
 //     return
 //   }
 // }
-
+const mapStateToProps = ({ contacts }) => ({
+  contacts: contacts.items,
+});
   
 const mapDispatchToProps = dispatch => ({
 
  addContact: (name,number) => dispatch(contactsActions.addContact(name,number)),
 });
 
-export default connect(null,mapDispatchToProps)(ContactForm)
+export default connect(mapStateToProps,mapDispatchToProps)(ContactForm)
 
 ContactForm.propTypes = {
-  addContact: PropTypes.func.isRequired
+  addContact: PropTypes.func.isRequired,
+  contacts: PropTypes.array.isRequired,
+
 }
