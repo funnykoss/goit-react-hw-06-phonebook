@@ -1,5 +1,4 @@
 import shortid from 'shortid';
-// import types from './contacts-type';
 import { createAction } from '@reduxjs/toolkit';
 
 const addContact = createAction('contacts/add', (name, number) => ({
