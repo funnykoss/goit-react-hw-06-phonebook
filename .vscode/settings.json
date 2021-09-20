@@ -1,5 +1,7 @@
 {
-    "cSpell.words": [
-        "ADDCONTACT"
-    ]
+   "files.autoSave": "onFocusChange",
+"editor.formatOnSave": true,
+"editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+}
 }
